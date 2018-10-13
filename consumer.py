@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 cluster_spec = {"ps": ["localhost:65062"], "worker": []}
@@ -15,14 +15,16 @@ def is_ready():
     return str(False)
 
 
-@app.route("/api/worker/add/<host>", methods=["POST"])
-def add_worker(host: str):
+@app.route("/api/worker/add", methods=["POST"])
+def add_worker():
+    host = request.args["host"]
     cluster_spec['worker'].append(host)
     return get_cluster_spec()
 
 
-@app.route("/api/worker/del/<host>", methods=["POST"])
-def del_worker(host: str):
+@app.route("/api/worker/del", methods=["POST"])
+def del_worker():
+    host = request.args["host"]
     cluster_spec['worker'].remove(host)
     return get_cluster_spec()
 
