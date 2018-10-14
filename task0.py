@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 # In task 0:
-cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+cluster = tf.train.ClusterSpec({"local": ["128.119.225.161:2222", "serveo.net:1498"]})
 server = tf.train.Server(cluster, job_name="local", task_index=0)
 
 x = tf.constant(2)
