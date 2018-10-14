@@ -14,7 +14,7 @@ def is_forward_success(proc) -> bool:
             return False
 
 
-def port_forward(local_port: int) -> str:
+def port_forward() -> (str, int):
     """
     SSHes to serveo.net and forwards a local port on localhost to a random port on servo.net.
 
@@ -25,9 +25,9 @@ def port_forward(local_port: int) -> str:
 
     while True:
         test_port = randint(1000, 65535)
-        proc = subprocess.Popen(['ssh', '-R', f'{test_port}:localhost:{local_port}', ssh_host],
+        proc = subprocess.Popen(['ssh', '-R', f'{test_port}:localhost:{test_port}', ssh_host],
                                 stdout=subprocess.PIPE)
         if is_forward_success(proc):
-            return f"{ssh_host}:{test_port}"
+            return f"{ssh_host}:{test_port}", test_port
         else:
             continue
