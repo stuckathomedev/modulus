@@ -11,11 +11,7 @@ stdenv.mkDerivation rec {
   # Customizable development requirements
   buildInputs = [
     # Add packages from nix-env -qaP | grep -i needle queries
-    python3
-    ngrok-1
-    python3Packages.tensorflow
     libffi
-    openmpi
   ];
 
   # Customizable development shell setup with at last SSL certs set

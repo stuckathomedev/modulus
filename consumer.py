@@ -1,4 +1,3 @@
-from flask import Flask, request
 import gevent
 from gevent.pywsgi import WSGIServer
 
